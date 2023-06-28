@@ -217,15 +217,7 @@ const attendance = async function (req, res, next) {
   const Sequelize = require("sequelize");
   const dotenv = require("dotenv");
   dotenv.config();
-  const sequelize = new Sequelize(
-    process.env.DB_NAME,
-    process.env.DB_USERNAME,
-    process.env.DB_PASSWORD,
-    {
-      host: process.env.DB_HOST,
-      dialect: "mysql",
-    }
-  );
+  const sequelize = require("../config/config");
   const form = await sequelize.query(
     "SELECT u.name, s.uploaded_file, s.updated_at, f.title FROM users u JOIN forms f ON u.user_id = f.user_id JOIN submissions s ON f.form_id = s.form_id WHERE f.user_id = " +
       user_id,

@@ -8,15 +8,8 @@ const listSubmissions = async function (req, res, next) {
   const Sequelize = require("sequelize");
   const dotenv = require("dotenv");
   dotenv.config();
-  const sequelize = new Sequelize(
-    process.env.DB_NAME,
-    process.env.DB_USERNAME,
-    process.env.DB_PASSWORD,
-    {
-      host: process.env.DB_HOST,
-      dialect: "mysql",
-    }
-  );
+  const sequelize = require("../config/config");
+
   const submissions = await sequelize.query(
     "SELECT forms.title, forms.description as 'Instruksi', submissions.form_id, submissions.uploaded_file, submissions.description, submissions.updated_at, users.name AS 'form dibuat oleh' FROM submissions, forms, users  WHERE submissions.form_id = forms.form_id AND forms.user_id = users.user_id",
     {
@@ -33,15 +26,8 @@ const riwayatSubmissions = async function (req, res, next) {
   const Sequelize = require("sequelize");
   const dotenv = require("dotenv");
   dotenv.config();
-  const sequelize = new Sequelize(
-    process.env.DB_NAME,
-    process.env.DB_USERNAME,
-    process.env.DB_PASSWORD,
-    {
-      host: process.env.DB_HOST,
-      dialect: "mysql",
-    }
-  );
+  const sequelize = require("../config/config");
+
   const submissions = await sequelize.query(
     "SELECT forms.title, forms.description as 'Instruksi', submissions.form_id, submissions.uploaded_file, submissions.description, submissions.updated_at, users.name AS 'form dibuat oleh' FROM submissions, forms, users  WHERE submissions.form_id = forms.form_id AND forms.user_id = users.user_id AND submissions.user_id =" +
       user_id,

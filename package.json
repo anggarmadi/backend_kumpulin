@@ -1,10 +1,12 @@
 {
-  "name": "gpt-team",
-  "version": "0.0.0",
-  "private": true,
+  "name": "express-mysql",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Prawito Hudoro",
+  "license": "MIT",
   "scripts": {
-    "start": "nodemon ./bin/www",
-    "startdev": "nodemon ./bin/www"
+    "start": "node src/index.js",
+    "startdev": "nodemon src/index.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
@@ -20,6 +22,7 @@
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.2.0",
     "path": "^0.12.7",
+    "puppeteer": "^20.7.3",
     "sequelize": "^6.30.0"
   }
 }

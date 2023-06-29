@@ -20,7 +20,7 @@ const { authenticateToken } = require("../middleware/verifyToken");
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./assets/files_upload/");
+    cb(null, "./src/assets/files_upload/");
   },
   filename: (req, file, cb) => {
     console.log(file);

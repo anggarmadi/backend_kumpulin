@@ -15,6 +15,7 @@ const submissionsRouter = require("./routes/submission");
 const authRouter = require("./routes/auth");
 const { authenticateToken } = require("./middleware/verifyToken");
 const PORT = process.env.PORT || 3000;
+var User = require("./models/users");
 
 // const usersRoutes = require("./routes/users");
 
@@ -37,7 +38,12 @@ app.use(
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cors({ origin: "https://kumpulin.website", credentials: true }));
+app.use(
+  cors({
+    origin: "http://localhost:4000" || "https://kumpulin.website/login",
+    credentials: true,
+  })
+);
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

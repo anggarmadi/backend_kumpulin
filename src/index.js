@@ -40,7 +40,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(
   cors({
-    origin: "http://localhost:4000" || "https://kumpulin.website/login",
+    origin: "https://kumpulin.website/login",
     credentials: true,
   })
 );

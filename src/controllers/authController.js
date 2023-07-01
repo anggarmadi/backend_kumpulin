@@ -125,21 +125,17 @@ const login_post = async (req, res) => {
 };
 
 const logout_get = (req, res) => {
-  req.session.destroy((err) => {
-    if (err) {
-      console.log(err);
-      return res.status(400).json({
-        success: false,
-        msg: "Cant logout",
-      });
-    }
-
-    res.clearCookie("jwt");
-    return res.status(200).json({
-      success: true,
-      msg: "Logout berhasil",
-    });
+  // Mengatur nilai jwt dan user id menjadi 'loggedout'
+  res.cookie("jwt", "loggedout", {
+    expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true,
+    secure: req.secure || req.headers["x-forwarded-proto"] === "https",
   });
+  req.session = null;
+  // Menghapus cookie secara eksplisit (opsional)
+  res.clearCookie("jwt", { path: "/" });
+  // Mengirimkan respons JSON dengan status 'success'
+  res.status(200).json({ status: "success" });
 };
 
 module.exports = {

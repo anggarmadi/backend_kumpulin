@@ -106,6 +106,11 @@ const login_post = async (req, res) => {
 
     req.session.user_id = user.user_id;
 
+    res.cookie("user", req.session.user_id, {
+      httpOnly: true,
+      sameSite: "none",
+      secure: true,
+    });
     res.cookie("jwt", token, {
       httpOnly: true,
       sameSite: "none",
@@ -114,6 +119,7 @@ const login_post = async (req, res) => {
 
     res.status(200).json({
       user: req.session.user_id,
+      userCookie: +req.cookies.user,
       token: token,
       pesan: "login sukses",
       expiresIn: "3 hari",
@@ -134,6 +140,7 @@ const logout_get = (req, res) => {
   req.session = null;
   // Menghapus cookie secara eksplisit (opsional)
   res.clearCookie("jwt", { path: "/" });
+  res.clearCookie("user", { path: "/" });
   // Mengirimkan respons JSON dengan status 'success'
   res.status(200).json({ status: "success" });
 };

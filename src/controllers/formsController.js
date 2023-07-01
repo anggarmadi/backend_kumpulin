@@ -79,7 +79,7 @@ const listForms = async function (req, res, next) {
 const listFormsMe = async function (req, res, next) {
   res.set("Access-Control-Allow-Credentials", "true");
   res.set("Access-Control-Allow-Origin", "http://localhost:4000");
-  const user_id = req.session.user_id;
+  const user_id = +req.cookies.user;
   // const forms = await Form.findAll({
   //   attributes: ["form_id", "title", "description", "created_at", "updated_at"],
   //   where: {
@@ -115,7 +115,7 @@ const listFormsMe = async function (req, res, next) {
 };
 
 const listFormsAll = async function (req, res, next) {
-  const user_id = req.session.user_id;
+  const user_id = +req.cookies.user;
   const forms = await Form.findAll({
     attributes: ["form_id", "title", "description", "created_at", "updated_at"],
     where: {
@@ -130,7 +130,7 @@ const listFormsAll = async function (req, res, next) {
 };
 
 const addForms = async function (req, res, next) {
-  let user_id = req.session.user_id;
+  let user_id = +req.cookies.user;
   let form_id = buatPin(8);
   let title = req.body.title;
   let description = req.body.description;
@@ -154,7 +154,7 @@ const addForms = async function (req, res, next) {
 };
 
 const editForms = async function (req, res, next) {
-  let user_id = req.session.user_id;
+  let user_id = +req.cookies.user;
   let form_id = req.params.formid;
   let title = req.body.title;
   let description = req.body.description;
@@ -214,7 +214,7 @@ const formSubmit = async function (req, res, next) {
 };
 
 const attendance = async function (req, res, next) {
-  const user_id = req.session.user_id;
+  const user_id = +req.cookies.user;
   const { QueryTypes } = require("sequelize");
   const Sequelize = require("sequelize");
   const dotenv = require("dotenv");

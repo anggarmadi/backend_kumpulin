@@ -3,6 +3,8 @@ var Form = require("../models/forms");
 var Submissions = require("../models/submissions");
 
 const homePage = async function (req, res, next) {
+  res.set("Access-Control-Allow-Credentials", "true");
+  res.set("Access-Control-Allow-Origin", "http://localhost:4000");
   const user_id = req.session.user_id;
   const submissions = await Submissions.findAll({
     attributes: ["form_id", "uploaded_file", "description", "updated_at"],

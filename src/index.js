@@ -29,7 +29,7 @@ app.use(
     name: "session",
     keys: ["keysssa", "key-2"],
     sameSite: "none",
-    // secure: true,
+    secure: true,
   })
 );
 

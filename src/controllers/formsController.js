@@ -77,6 +77,8 @@ const listForms = async function (req, res, next) {
 };
 
 const listFormsMe = async function (req, res, next) {
+  res.set("Access-Control-Allow-Credentials", "true");
+  res.set("Access-Control-Allow-Origin", "http://localhost:4000");
   const user_id = req.session.user_id;
   // const forms = await Form.findAll({
   //   attributes: ["form_id", "title", "description", "created_at", "updated_at"],

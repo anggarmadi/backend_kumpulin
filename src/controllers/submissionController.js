@@ -117,6 +117,8 @@ const deleteSubmissions = async function (req, res, next) {
 };
 
 const paginationSubs = async function (req, res, next) {
+  res.set("Access-Control-Allow-Credentials", "true");
+  res.set("Access-Control-Allow-Origin", "http://localhost:4000");
   const user_id = req.session.user_id;
   const page = parseInt(req.query.page) || 0;
   const limit = parseInt(req.query.limit) || 5;

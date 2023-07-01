@@ -33,18 +33,13 @@ app.use(
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(
-  cors({
-    origin: "http://localhost:4000",
-    credentials: true,
-  })
-);
 // app.use(
 //   cors({
-//     origin: "https://kumpulin.website",
+//     origin: "http://localhost:4000",
 //     credentials: true,
 //   })
 // );
+app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

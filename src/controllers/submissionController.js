@@ -21,7 +21,7 @@ const listSubmissions = async function (req, res, next) {
 };
 
 const riwayatSubmissions = async function (req, res, next) {
-  const user_id = req.session.user_id;
+  const user_id = +req.cookies.user;
   const { QueryTypes } = require("sequelize");
   const Sequelize = require("sequelize");
   const dotenv = require("dotenv");
@@ -48,7 +48,7 @@ const riwayatSubmissions = async function (req, res, next) {
 
 const addSubmissions = async function (req, res, next) {
   // console.log(req.file);
-  let user_id = req.session.user_id;
+  let user_id = +req.cookies.user;
   let form_id = req.body.form_id;
   let uploaded_file = req.file.filename;
   let description = req.body.description;
@@ -69,7 +69,7 @@ const addSubmissions = async function (req, res, next) {
 };
 
 const editSubmissions = async function (req, res, next) {
-  let user_id = req.session.user_id;
+  let user_id = +req.cookies.user;
   let form_id = req.params.formid;
   let uploaded_file = req.body.uploaded_file;
   let description = req.body.description;
@@ -119,7 +119,7 @@ const deleteSubmissions = async function (req, res, next) {
 const paginationSubs = async function (req, res, next) {
   res.set("Access-Control-Allow-Credentials", "true");
   res.set("Access-Control-Allow-Origin", "http://localhost:4000");
-  const user_id = req.session.user_id;
+  const user_id = +req.cookies.user;
   const page = parseInt(req.query.page) || 0;
   const limit = parseInt(req.query.limit) || 5;
   const offset = limit * page;

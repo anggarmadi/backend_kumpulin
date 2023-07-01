@@ -14,10 +14,10 @@ const listUsers = async function (req, res, next) {
 const editUsers = async function (req, res, next) {
   const users = await User.findAll({
     where: {
-      user_id: req.session.user_id,
+      user_id: +req.cookies.user,
     },
   });
-  let userid = req.session.user_id;
+  let userid = +req.cookies.user;
   let username = req.body.username;
   let name = req.body.name;
   let email = req.body.email;
@@ -66,7 +66,7 @@ const editUsers = async function (req, res, next) {
 };
 
 const editPassword = async function (req, res, next) {
-  let userid = req.session.user_id;
+  let userid = +req.cookies.user;
   let newPassword = req.body.newPassword;
   let confPassword = req.body.confPassword;
   if (newPassword !== confPassword)
@@ -100,7 +100,7 @@ const editPassword = async function (req, res, next) {
 
 //list Users
 const profileMe = async function (req, res, next) {
-  const user_id = req.session.user_id;
+  const user_id = +req.cookies.user;
   const users = await User.findAll({
     attributes: ["username", "name", "email", "active", "avatar"],
 

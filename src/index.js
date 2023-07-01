@@ -6,7 +6,7 @@ const fs = require("fs");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const cors = require("cors");
-const session = require("cookie-session");
+const cookieSession = require("cookie-session");
 const indexRouter = require("./routes/index");
 const bodyParser = require("body-parser");
 const usersRouter = require("./routes/users");
@@ -25,14 +25,9 @@ var User = require("./models/users");
 const app = express();
 
 app.use(
-  session({
-    secret: "some-scret",
-    resave: false,
-    saveUninitialized: false,
-    // cookie: {
-    //   sameSite: "none",
-    //   secure: true,
-    // },
+  cookieSession({
+    name: "session",
+    keys: ["keysssa", "key-2"],
   })
 );
 

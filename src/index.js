@@ -37,7 +37,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(
   cors({
-    origin: "http://localhost:4000",
+    origin: "https://kumpulin.website",
     credentials: true,
   })
 );
@@ -80,7 +80,7 @@ app.get("/download/:fileName", authenticateToken, function (req, res) {
 
 // Definisikan endpoint untuk mengirimkan gambar avatar
 app.get("/avatar", async (req, res) => {
-  const user_id = req.session.user_id;
+  const user_id = req.cookies.user;
   // Ambil path file gambar avatar dari database
   // const avatarPath = getGambarPath(user_id); // Ganti dengan path yang sesuai di database
   // console.log("Ada? : ", avatarPath);
